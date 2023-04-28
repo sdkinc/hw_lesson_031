@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -36,6 +39,22 @@ public class Task2Enums {
         int dayInSelectedMonth = daysPerMonth.get(monthKey);
         System.out.println(monthKey + " has " + dayInSelectedMonth + " days and season's name is " + seasonName);
         System.out.println();
+    }
+
+    private static Map<Month, Integer> readDaysPerMountFromFile() throws IOException {
+        Map<Month, Integer> monthInMethod = new HashMap<>();
+        BufferedReader br = new BufferedReader(new FileReader("res/months.csv"));
+        String monthAndDay = br.readLine();//читаем строку из файла
+        while (monthAndDay != null) {
+            String monthName = monthAndDay.substring(0, monthAndDay.indexOf(","));//парсим наименование месяца
+            String dayCountStr = monthAndDay.substring(monthAndDay.indexOf(",") + 1);
+            int dayCount = Integer.parseInt(dayCountStr);//парсим кво дней
+            Month monthKey = Month.valueOf(monthName.toUpperCase()); // месяц "как ключ словаря"
+            monthInMethod.put(monthKey, dayCount); //вставляем пару ключ значение в мапу
+            monthAndDay = br.readLine();//читаем следующую строку
+        }
+        br.close();//закрываем ридер
+        return monthInMethod;//возвращаем созданную и заполненную мапу
     }
 
     private enum Month {
