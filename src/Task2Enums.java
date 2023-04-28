@@ -6,26 +6,16 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Task2Enums {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         /*
         Задание 1
         Расширьте программу Task2MonthsEnums.
         Добавьте ещё один enum, который будет описывать времена года (зима, лето, весна, осень).
         Для введённого пользователем месяца напишите, к какому именно времени года относится выбранный месяц.
          */
-        Map<Month, Integer> daysPerMonth = new HashMap<>();
-        daysPerMonth.put(Month.JANUARY, 31);
-        daysPerMonth.put(Month.FEBRUARY, 28); // год не високосный
-        daysPerMonth.put(Month.MARCH, 31);
-        daysPerMonth.put(Month.APRIL, 30);
-        daysPerMonth.put(Month.MAY, 31);
-        daysPerMonth.put(Month.JUNE, 30);
-        daysPerMonth.put(Month.JULY, 31);
-        daysPerMonth.put(Month.AUGUST, 31);
-        daysPerMonth.put(Month.SEPTEMBER, 30);
-        daysPerMonth.put(Month.OCTOBER, 31);
-        daysPerMonth.put(Month.NOVEMBER, 30);
-        daysPerMonth.put(Month.DECEMBER, 31);
+
+        String fileName = "res/months.csv";
+        Map<Month, Integer> daysPerMonth = readDaysPerMountFromFile(fileName);
 
         Scanner scanner = new Scanner(System.in);
 
@@ -41,9 +31,9 @@ public class Task2Enums {
         System.out.println();
     }
 
-    private static Map<Month, Integer> readDaysPerMountFromFile() throws IOException {
+    private static Map<Month, Integer> readDaysPerMountFromFile(String fileName) throws IOException {
         Map<Month, Integer> monthInMethod = new HashMap<>();
-        BufferedReader br = new BufferedReader(new FileReader("res/months.csv"));
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
         String monthAndDay = br.readLine();//читаем строку из файла
         while (monthAndDay != null) {
             String monthName = monthAndDay.substring(0, monthAndDay.indexOf(","));//парсим наименование месяца
