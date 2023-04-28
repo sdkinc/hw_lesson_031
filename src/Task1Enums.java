@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Main {
+public class Task1Enums {
     public static void main(String[] args) {
         /*
         Задание 1
