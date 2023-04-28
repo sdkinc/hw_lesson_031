@@ -23,4 +23,11 @@ public class Main {
         NOVEMBER,
         DECEMBER,
     }
+
+    private enum Season {
+        WINTER,
+        SPRING,
+        SUMMER,
+        AUTUMN,
+    }
 }
